@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "for managing discord server of UCD",
   "main": "main.js",
+  
   "scripts": {
     "start": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,6 +13,7 @@
   "dependencies": {
     "@google-cloud/firestore": "^4.8.1",
     "@notionhq/client": "^0.3.1",
+    "axios": "^0.21.4",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "discord.js": "^12.5.1",
