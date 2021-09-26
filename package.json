@@ -1,0 +1,28 @@
+{
+  "name": "ucd_bot",
+  "version": "1.0.0",
+  "description": "for managing discord server of UCD",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Karmveer Singh Ranawat",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/firestore": "^4.8.1",
+    "@notionhq/client": "^0.3.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "firebase": "^8.2.3",
+    "googleapis": "^84.0.0",
+    "mysql": "^2.18.1",
+    "node-imap": "^0.9.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
