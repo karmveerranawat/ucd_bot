@@ -14,6 +14,30 @@ module.exports = {
         if(!permissions.has('CONNECT')) return message.channel.send('You do not have the correct permissions');
         if(!permissions.has('SPEAK')) return message.channel.send('You do not have the correct permissions');
         if(!args.length) return message.channel.send('You need to send the second argument!');
+
+        const validURL = (str) => {
+            var regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\s+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+            if(!regex.test(str)){
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        if(validURL(args[0])){
+            
+            const stream = ytdl(args[0], {filter: 'audioonly'});
+
+            connection.play(stream, {seak: 0, volume: 40})
+            .on('finish', () => {
+                voiceChannel.leave();
+                message.channel.send('leaving channel');
+            });
+
+            await message.reply(`:thumbsup: Now Playing ***Your Link!***`)
+
+            return
+        }
     
         const connection = await voiceChannel.join();
 
