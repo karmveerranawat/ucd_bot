@@ -114,6 +114,14 @@ client.on('message', message => {
         message.channel.send("done! will there be anything else ?");
           
     }
+
+    else if (command === 'play'){
+        client.commands.get('play').execute(message, args);
+    }
+
+    else if (command === 'leave'){
+        client.commands.get('leave').execute(message, args);
+    }
 });
 
 // const OLDMAILS = new Map();

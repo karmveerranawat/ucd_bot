@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "for managing discord server of UCD",
   "main": "main.js",
-  
   "scripts": {
     "start": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +10,7 @@
   "author": "Karmveer Singh Ranawat",
   "license": "ISC",
   "dependencies": {
+    "@discordjs/opus": "^0.6.0",
     "@google-cloud/firestore": "^4.8.1",
     "@notionhq/client": "^0.3.1",
     "axios": "^0.21.4",
@@ -19,10 +19,13 @@
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "ffmpeg-static": "^4.4.0",
     "firebase": "^8.2.3",
     "googleapis": "^84.0.0",
     "mysql": "^2.18.1",
-    "node-imap": "^0.9.6"
+    "node-imap": "^0.9.6",
+    "yt-search": "^2.10.1",
+    "ytdl-core": "^4.9.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
