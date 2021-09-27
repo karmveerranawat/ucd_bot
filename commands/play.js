@@ -26,7 +26,7 @@ module.exports = {
 
         if(validURL(args[0])){
             
-            const stream = ytdl(args[0], {filter: 'audioonly'});
+            const stream = ytdl(args[0], {filter: 'audio'});
 
             connection.play(stream, {seak: 0, volume: 40})
             .on('finish', () => {
@@ -50,7 +50,7 @@ module.exports = {
         const video = await videoFinder(args.join(' '));
         
         if(video){
-            const stream = ytdl(video.url, {filter: 'audioonly'});
+            const stream = ytdl(video.url, {filter: 'audio'});
             connection.play(stream, {seek: 0, volume: 40})
             .on('finish', () =>{
                 voiceChannel.leave();
