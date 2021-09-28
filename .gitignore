@@ -3,3 +3,4 @@ node_modules
 credentials.json
 firestoreClient.js
 service-account.json
+commands/leave-reason.js
