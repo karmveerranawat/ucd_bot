@@ -10,6 +10,7 @@ const notion = new Client({
 })
 
 let trigger  = 0;
+let time = 30000;
 let prevTodos = [
     {
         id: "1625f81b-78cf-49bf-8046-62bbbe3bd6d7",
@@ -35,6 +36,7 @@ module.exports = {
 	name: 'notion',
 	description: 'Notion Api',
 	execute(message, args, Discord) {
+        message.channel.send("Notion Pulls Have been started Succesfully , it will run every 2 minutes");
         setInterval(() => {
             const exampleEmbed = new Discord.MessageEmbed();
             exampleEmbed.setColor('#0099ff')
@@ -50,9 +52,19 @@ module.exports = {
                         return [
                             ...acc,
                             {
-                                type: "ToDo Delete Update",
-                                title: currentTodo.text,
-                                status: currentTodo.status
+                                "title": "ToDo Delete Update",
+                                "color": "1127128",
+                                "description": "",
+                                "fields": [
+                                    {
+                                        name: "~~Deleted Todo's Title~~",
+                                        value: "~~```"+currentTodo.text+"```~~"
+                                    },
+                                    {
+                                        name: "~~Deleted Todo's Status~~",
+                                        value: "~~```"+currentTodo.status+"```~~"
+                                    }                                
+                                ]
                             }
                         ]
                     } else {
@@ -65,9 +77,19 @@ module.exports = {
                         return [
                             ...acc,
                             {
-                                type: "New ToDo Added",
-                                newTitle: currentTodo.text,
-                                newStatus: currentTodo.status
+                                "title": "New ToDo Added",
+                                "color": "1127128",
+                                "description": "",
+                                "fields": [
+                                    {
+                                        name: "New Todo's Title",
+                                        value: "```"+currentTodo.text+"```"
+                                    },
+                                    {
+                                        name: "New Todo's Status",
+                                        value: "```"+currentTodo.status+"```"
+                                    }                                
+                                ]
                             }
                         ]
                     } else {
@@ -83,10 +105,21 @@ module.exports = {
                     else if(latesTodo.text !== currentTodo.text){
                         return [
                             ...acc,
-                            {
-                                type: "ToDo Title Update",
-                                prevTitle: currentTodo.text,
-                                newTitle: latesTodo.text
+                            {                              
+                                "title": "ToDo Title Update",
+                                "color": "14177041",
+                                "description": "",
+                                "fields": [
+                                    {
+                                        name: "Previous Title : ",
+                                        value: "```"+currentTodo.text+"```"
+                                    },
+                                    {
+                                        name: "New Title : ",
+                                        value: "```"+latesTodo.text+"```"
+                                    }
+                                ]
+                                
                             }
                         ]
                     } else {
@@ -103,10 +136,19 @@ module.exports = {
                         return [
                             ...acc,
                             {
-                                type: "ToDo Status Update",
-                                title: currentTodo.text,
-                                prevStatus: currentTodo.checked,
-                                newStatus: latesTodo.checked
+                                "title": "ToDo Status Update",
+                                "color": "1127128",
+                                "description": "```"+currentTodo.text+"```",
+                                "fields": [
+                                    {
+                                        name: "Previous Status",
+                                        value: "```"+currentTodo.checked+"```"
+                                    },
+                                    {
+                                        name: "New Status",
+                                        value: "```"+latesTodo.checked+"```"
+                                    }                                
+                                ]
                             }
                         ]
                     } else {
@@ -153,27 +195,14 @@ module.exports = {
                 if(trigger  == 0){
                     trigger = 1;
                     prevTodos=todos;
-                    message.channel.send("Notion Pulls Have been started Succesfully , it will run every 5 seconds");
+                    
                 } else {
                     const diff = differ(prevTodos, todos);
                     if(diff.titleChange.length){
+                        
                         axios.post(process.env.DISCORD_WEBHOOK_URL,
                         {
-                            embeds: [{
-                                "title": diff.titleChange[0].type,
-                                "color": "14177041",
-                                "description": "",
-                                "fields": [
-                                    {
-                                        name: "Previous Title : ",
-                                        value: "```"+diff.titleChange[0].prevTitle+"```"
-                                    },
-                                    {
-                                        name: "New Title : ",
-                                        value: "```"+diff.titleChange[0].newTitle+"```"
-                                    }
-                                ]
-                            }]
+                            embeds: diff.titleChange
                         },
                         {
                             Headers: {
@@ -185,21 +214,7 @@ module.exports = {
                     if(diff.statusChange.length){
                         axios.post(process.env.DISCORD_WEBHOOK_URL,
                         {
-                            embeds: [{
-                                "title": diff.statusChange[0].type,
-                                "color": "1127128",
-                                "description": "```"+diff.statusChange[0].title+"```",
-                                "fields": [
-                                    {
-                                        name: "Previous Status",
-                                        value: "```"+diff.statusChange[0].prevStatus+"```"
-                                    },
-                                    {
-                                        name: "New Status",
-                                        value: "```"+diff.statusChange[0].newStatus+"```"
-                                    }                                
-                            ]
-                            }]
+                            embeds: diff.statusChange
                         },
                         {
                             Headers: {
@@ -211,21 +226,7 @@ module.exports = {
                     if(diff.delTodo.length){
                         axios.post(process.env.DISCORD_WEBHOOK_URL,
                         {
-                            embeds: [{
-                                "title": diff.delTodo[0].type,
-                                "color": "1127128",
-                                "description": "",
-                                "fields": [
-                                    {
-                                        name: "~~Deleted Todo's Title~~",
-                                        value: "~~```"+diff.delTodo[0].title+"```~~"
-                                    },
-                                    {
-                                        name: "~~Deleted Todo's Status~~",
-                                        value: "~~```"+diff.delTodo[0].status+"```~~"
-                                    }                                
-                            ]
-                            }]
+                            embeds: diff.delTodo
                         },
                         {
                             Headers: {
@@ -234,24 +235,10 @@ module.exports = {
                         })
                     }
 
-                if(diff.todoCreate.length){
+                    if(diff.todoCreate.length){
                         axios.post(process.env.DISCORD_WEBHOOK_URL,
                         {
-                            embeds: [{
-                                "title": diff.todoCreate[0].type,
-                                "color": "1127128",
-                                "description": "",
-                                "fields": [
-                                    {
-                                        name: "New Todo's Title",
-                                        value: "```"+diff.todoCreate[0].newTitle+"```"
-                                    },
-                                    {
-                                        name: "New Todo's Status",
-                                        value: "```"+diff.todoCreate[0].newStatus+"```"
-                                    }                                
-                            ]
-                            }]
+                            embeds: diff.todoCreate
                         },
                         {
                             Headers: {
@@ -265,7 +252,7 @@ module.exports = {
                 //message.channel.send(JSON.stringify(allBlocks.results.filter(b => b.type === "to_do")));
                 //message.channel.send(JSON.stringify(todos));
             })()
-        }, 5000);
+        }, time);
         
     },
 };        
