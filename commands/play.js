@@ -1,5 +1,5 @@
 const ytdl = require('ytdl-core');
-const ytSearch = require('yt-Search');
+const ytSearch = require('yt-search');
 const { query } = require('express');
 
 module.exports = {
