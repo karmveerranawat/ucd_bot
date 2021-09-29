@@ -7,5 +7,6 @@ module.exports = {
             var botPing = Math.round(bot.pi);
 
             m.edit(`**:ping_pong: Pong! 🏓Latency is:-**\n  ${ping}ms`);
+		});		
 	},
 };
