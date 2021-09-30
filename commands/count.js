@@ -23,7 +23,7 @@ module.exports = {
                 })
 
                 if(!args.length){
-                    query = "SELECT distinct(COUNT(email)) AS count from core_team_reg_21"
+                    query = "SELECT COUNT(DISTINCT(email)) AS count FROM `core_team_reg_21` WHERE pno != ''"
                 } else if(args[0] == "tech" || args[0] == "t"){
                     query = "SELECT COUNT(*) AS count from core_team_reg_21 where pref1='technical'"
                 }else if(args[0] == "design" || args[0] == "d"){

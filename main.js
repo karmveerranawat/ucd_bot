@@ -100,8 +100,8 @@ client.on('message', message => {
         client.commands.get('notion').execute(message, args, Discord);
     }
 
-    else if(command === 'hate'){
-        
+    else if(command === 'discord'){
+        message.channel.send("UCD DISCORD LINK : https://ucdupes.org/discord");
     }
 
     else if (command === 'shutdown'){
