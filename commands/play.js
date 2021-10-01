@@ -8,7 +8,7 @@ module.exports = {
     async execute(message, args){
         const voiceChannel = message.member.voice.channel;
 
-        if(!voiceChannel) return message.channel.send('Please join voice channel to execute this command!');
+        if(!voiceChannel) return message.channel.send(' <:ucd_cringe:849590578249203742>  Please join voice channel to execute this command!');
 
         const permissions = voiceChannel.permissionsFor(message.client.user);
         if(!permissions.has('CONNECT')) return message.channel.send('You do not have the correct permissions');
@@ -34,7 +34,7 @@ module.exports = {
                 message.channel.send('leaving channel');
             });
 
-            await message.reply(`:thumbsup: Now Playing ***Your Link!***`)
+            await message.reply(`<:ucd_slurp:857143948837257216>  Now Playing ***Your Link!***`)
 
             return
         }
@@ -56,7 +56,7 @@ module.exports = {
                 voiceChannel.leave();
             });
 
-            await message.reply(`:thumbsup: Now Playing ***${video.title}***`)
+            await message.reply(`<:ucd_slurp:857143948837257216>  Now Playing ***${video.title}***`)
         } else{
             message.channel.send('No Video Result Found');
         }
