@@ -174,23 +174,16 @@ module.exports = {
                     id: todo.id
                 }));
 
-
-                let emote = "";
-                todos.forEach(element => {
-                    if(element.checked == true){
-                        emote = "<:ucd_stonks:845339516671623178>";
-                    } else {
-                        emote = "<:ucd_stinks:845339515135721534>";
-                    }
-                    exampleEmbed.addFields(
-                        { 
-                            name: 'Task ID '+element.id,
-                            value: "```"+element.text+" \n"+element.checked+"```"+emote
-                        }
-                    )
-                    // exampleEmbed.addField('Refferal', element.refferal,true);
-                    // exampleEmbed.addField('Count', element.count);
-                });
+                // todos.forEach(element => {
+                //     exampleEmbed.addFields(
+                //         { 
+                //             name: 'Task ID '+element.id,
+                //             value: "```"+element.text+" \n"+element.checked+"```"+emote
+                //         }
+                //     )
+                //     // exampleEmbed.addField('Refferal', element.refferal,true);
+                //     // exampleEmbed.addField('Count', element.count);
+                // });
 
                 if(trigger  == 0){
                     trigger = 1;
