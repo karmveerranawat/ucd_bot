@@ -16,6 +16,7 @@ const token = process.env.TOKEN;
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 var temp_cmds;
+var servers = {};
 
 const commandFiles = fs
   .readdirSync("./commands")
@@ -124,6 +125,8 @@ client.on("message", (message) => {
     client.commands.get("play").execute(message, args);
   } else if (command === "leave") {
     client.commands.get("leave").execute(message, args);
+  } else if (!servers[message.guild.id]) servers[message.guild.id] = {
+    queue: []
   }
 });
 
