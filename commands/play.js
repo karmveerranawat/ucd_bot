@@ -36,7 +36,7 @@ module.exports = {
 
             await message.reply(`<:ucd_slurp:857143948837257216>  Now Playing ***Your Link!***`)
 
-            return
+            return;
         }
     
         const connection = await voiceChannel.join();

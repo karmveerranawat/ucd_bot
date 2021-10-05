@@ -9,6 +9,7 @@ const { exit } = require("process");
 const prefix = ".";
 const status = require("./globals/cmd_status_check");
 const { channel } = require("diagnostics_channel");
+const ytdl = require("ytdl-core");
 
 dotenv.config();
 const token = process.env.TOKEN;
