@@ -9,14 +9,14 @@ const { exit } = require("process");
 const prefix = ".";
 const status = require("./globals/cmd_status_check");
 const { channel } = require("diagnostics_channel");
-const ytdl = require("ytdl-core");
+
 
 dotenv.config();
 const token = process.env.TOKEN;
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 var temp_cmds;
-var servers = {};
+
 
 const commandFiles = fs
   .readdirSync("./commands")
@@ -121,13 +121,7 @@ client.on("message", (message) => {
       await new Promise((resolve) => setTimeout(resolve, timeinMS));
     }
     message.channel.send("done! will there be anything else ?");
-  } else if (command === "play") {
-    client.commands.get("play").execute(message, args);
-  } else if (command === "leave") {
-    client.commands.get("leave").execute(message, args);
-  } else if (!servers[message.guild.id]) servers[message.guild.id] = {
-    queue: []
-  }
+  } 
 });
 
 // const OLDMAILS = new Map();
