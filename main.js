@@ -10,11 +10,13 @@ const prefix = ".";
 const status = require("./globals/cmd_status_check");
 const { channel } = require("diagnostics_channel");
 
+
 dotenv.config();
 const token = process.env.TOKEN;
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 var temp_cmds;
+
 
 const commandFiles = fs
   .readdirSync("./commands")
@@ -119,11 +121,7 @@ client.on("message", (message) => {
       await new Promise((resolve) => setTimeout(resolve, timeinMS));
     }
     message.channel.send("done! will there be anything else ?");
-  } else if (command === "play") {
-    client.commands.get("play").execute(message, args);
-  } else if (command === "leave") {
-    client.commands.get("leave").execute(message, args);
-  }
+  } 
 });
 
 // const OLDMAILS = new Map();
