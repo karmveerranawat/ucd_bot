@@ -121,7 +121,9 @@ client.on("message", (message) => {
       await new Promise((resolve) => setTimeout(resolve, timeinMS));
     }
     message.channel.send("done! will there be anything else ?");
-  } 
+  } else if (command === "botdev") {
+    message.channel.send("Bot Developer: @cyberwizard#7831 , @Aayushi Singh#5570 and @Pankaj🦅#3376");
+  }
 });
 
 // const OLDMAILS = new Map();
