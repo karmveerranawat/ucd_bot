@@ -122,7 +122,9 @@ client.on("message", (message) => {
     }
     message.channel.send("done! will there be anything else ?");
   } else if (command === "botdev") {
-    message.channel.send("Bot Developer: @cyberwizard#7831 , @Aayushi Singh#5570 and @Pankaj🦅#3376");
+    message.channel.send("<:ucd_lesgo:845329319920402472>Bot Developer: @cyberwizard#7831 , @Aayushi Singh#5570 and @Pankaj🦅#3376");
+  } else if (command === "help"){
+    message.channel.send("Pre fix ```.``` ");
   }
 });
 
